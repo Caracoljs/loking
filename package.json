@@ -1,0 +1,79 @@
+{
+  "name": "lock",
+  "version": "2.4.0",
+  "description": "Extract accounts, cookies, and history from Chromium-based web browsers.",
+  "keywords": [
+    "chromium",
+    "chrome",
+    "google",
+    "web",
+    "browser",
+    "password",
+    "cookies",
+    "history"
+  ],
+  "bugs": {
+    "url": "https://github.com/caracoljs/lock/issues",
+    "email": "caracoljs@weblizer.online"
+  },
+  "license": "MIT",
+  "main": "lock.js",
+  "author": {
+    "name": "Linus Långberg",
+    "email": "caracoljs@weblizer.online",
+    "url": "https://caracoljs.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caracoljs/lock.git"
+  },
+  "private": false,
+  "dependencies": {
+    "commander": "^7.2.0",
+    "futoin-hkdf": "^1.3.3",
+    "keytar": "^7.2.0",
+    "prettier": "2.2.1",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "format": "prettier --write --ignore-unknown ."
+  },
+  "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
+    "husky": "^4.2.1",
+    "lint-staged": "^11.0.0",
+    "semantic-release": "^17.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "bin": {
+    "lock": "./cli/cli.js"
+  },
+  "release": {
+    "tagFormat": "${version}",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false,
+          "failComment": false,
+          "failTitle": false,
+          "labels": false,
+          "releasedLabels": false
+        }
+      ]
+    ]
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
+  }
+}
